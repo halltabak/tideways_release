@@ -1,0 +1,33 @@
+name: Tag release in Tideways
+description: 'This action supports release tagging in Tideways'
+inputs:
+  tideways_api_key:
+    required: true
+    type: string
+    description: 'The Tideways API key'
+  release_name:
+    required: true
+    type: string
+    description: 'The name of the release'
+  service_name:
+    required: true
+    type: string
+    description: 'The name of the service name'
+  compare_minutes:
+    required: false
+    type: number
+    default: 180
+    description: 'Timespan to compare before and after release'
+  environment:
+    required: true
+    type: string
+    description: 'The environment to tag the release in'
+  
+runs:
+  using: "composite"
+  steps:
+    - name: "Tideways release"
+      shell: bash
+      run: |
+         curl -d "{\"apiKey\": \"${{ inputs.tideways_api_key }}\", \"name\": \"${{ inputs.release_name }}\", \"type\": \"release\", \"environment\": \"${{ inputs.environment }}\", \"service\": \"${{ inputs.service }}\", \"compareAfterMinutes\":${{ inputs.compare_minutes }}}" -X POST https://app.tideways.io/api/events
+   

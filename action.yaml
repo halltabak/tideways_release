@@ -29,5 +29,5 @@ runs:
     - name: "Tideways release"
       shell: bash
       run: |
-         curl -d "{\"apiKey\": \"${{ inputs.tideways_api_key }}\", \"name\": \"${{ inputs.release_name }}\", \"type\": \"release\", \"environment\": \"${{ inputs.environment }}\", \"service\": \"${{ inputs.service }}\", \"compareAfterMinutes\":${{ inputs.compare_minutes }}}" -X POST https://app.tideways.io/api/events
+         curl -d "{\"apiKey\": \"${{ inputs.tideways_api_key }}\", \"name\": \"${{ inputs.release_name }}\", \"type\": \"release\", \"environment\": \"${{ inputs.environment }}\", \"service\": \"${{ inputs.service_name }}\", \"compareAfterMinutes\":${{ inputs.compare_minutes }}}" -X POST https://app.tideways.io/api/events
    
